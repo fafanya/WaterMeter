@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMeter.Android", "WaterMeter\WaterMeter.Android\WaterMeter.Android.csproj", "{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMeter.MobileAppService", "WaterMeter\WaterMeter.MobileAppService\WaterMeter.MobileAppService.csproj", "{9F88239E-2723-4356-80DB-6C30F9186C14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMeter", "WaterMeter\WaterMeter\WaterMeter.csproj", "{90E6DE11-F43D-4A69-B082-9EDFFD4B3FEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterMeter.Common", "WaterMeter.Common\WaterMeter.Common.csproj", "{E2C23109-77F9-4FE9-A042-D0B61523BF2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9F88239E-2723-4356-80DB-6C30F9186C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F88239E-2723-4356-80DB-6C30F9186C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F88239E-2723-4356-80DB-6C30F9186C14}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9F88239E-2723-4356-80DB-6C30F9186C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F88239E-2723-4356-80DB-6C30F9186C14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F88239E-2723-4356-80DB-6C30F9186C14}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{90E6DE11-F43D-4A69-B082-9EDFFD4B3FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90E6DE11-F43D-4A69-B082-9EDFFD4B3FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90E6DE11-F43D-4A69-B082-9EDFFD4B3FEE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{90E6DE11-F43D-4A69-B082-9EDFFD4B3FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90E6DE11-F43D-4A69-B082-9EDFFD4B3FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90E6DE11-F43D-4A69-B082-9EDFFD4B3FEE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E2C23109-77F9-4FE9-A042-D0B61523BF2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2C23109-77F9-4FE9-A042-D0B61523BF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2C23109-77F9-4FE9-A042-D0B61523BF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2C23109-77F9-4FE9-A042-D0B61523BF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {708EA5C6-673B-4A82-8C73-912E5748E780}
+	EndGlobalSection
+EndGlobal
