@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WaterMeter.Models;
+using Plugin.Media.Abstractions;
 
 namespace WaterMeter.Services
 {
@@ -76,6 +77,21 @@ namespace WaterMeter.Services
 
             var response = await client.DeleteAsync($"api/item/{id}");
 
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> AddPhotoAsync(MediaFile photo)
+        {
+            if (photo == null)
+                return false;
+
+            var content = new MultipartFormDataContent();
+
+            content.Add(new StreamContent(photo.GetStream()),
+                "\"file\"",
+                $"\"{photo.Path}\"");
+
+            var response = await client.PostAsync($"api/item/Files/Upload/", content);
             return response.IsSuccessStatusCode;
         }
     }

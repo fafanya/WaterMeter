@@ -9,10 +9,6 @@
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label
-                  Text="CodeBangkok Photo"
-                  HorizontalTextAlignment="Center"
-                  FontSize="20"/>
             <Image
                   x:Name="image"
                   Grid.Row="1"

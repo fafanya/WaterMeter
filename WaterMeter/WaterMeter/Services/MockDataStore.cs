@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Plugin.Media.Abstractions;
 using WaterMeter.Models;
 
 namespace WaterMeter.Services
@@ -61,6 +62,11 @@ namespace WaterMeter.Services
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
+        }
+
+        public Task<bool> AddPhotoAsync(MediaFile photo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,16 +11,21 @@ using Plugin.Permissions;
 using Plugin;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions.Abstractions;
+using WaterMeter.ViewModels;
 
 namespace WaterMeter.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PhotoPage : ContentPage
 	{
-		public PhotoPage ()
+        PhotoViewModel viewModel;
+
+        public PhotoPage ()
 		{
 			InitializeComponent ();
-		}
+
+            BindingContext = viewModel = new PhotoViewModel();
+        }
 
         async void TakePhoto_Clicked(object sender, System.EventArgs e)
         {
@@ -50,8 +55,6 @@ namespace WaterMeter.Views
                 storageStatus = results[Permission.Storage];
             }
 
-
-
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
                 await DisplayAlert("No Camera", ":( No camera avaialble.", "OK");
@@ -65,6 +68,9 @@ namespace WaterMeter.Views
             if (file == null)
                 return;
             await DisplayAlert("File Location", file.Path, "OK");
+            
+            MessagingCenter.Send(this, "AddPhoto", file);
+
             image.Source = ImageSource.FromStream(() =>
             {
                 var stream = file.GetStream();

@@ -1,7 +1,10 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-
+using System.IO;
 using WaterMeter.Models;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace WaterMeter.Controllers
 {
@@ -71,6 +74,24 @@ namespace WaterMeter.Controllers
         public void Delete(string id)
         {
             ItemRepository.Remove(id);
+        }
+
+        [Route("Files/Upload/")]
+        [HttpPost]
+        public IActionResult Post(IFormFile file)
+        {
+            var uploadLocation = Path.Combine(Environment.CurrentDirectory, "Uploads\\UsersImg");
+
+            var fileName = file.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault();
+
+            if (file.Length > 0)
+            {
+                using (var stream = new FileStream(Path.Combine(uploadLocation, fileName), FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+            }
+            return Ok();
         }
     }
 }
