@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using WaterMeter.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Media;
@@ -68,8 +68,13 @@ namespace WaterMeter.Views
             if (file == null)
                 return;
             await DisplayAlert("File Location", file.Path, "OK");
-            
-            MessagingCenter.Send(this, "AddPhoto", file);
+
+            Counter fileItem = new Counter
+            {
+                Photo = file,
+                Details = new Item { Text = "Counter", Description = "Photo" }
+            };
+            MessagingCenter.Send(this, "AddPhoto", fileItem);
 
             image.Source = ImageSource.FromStream(() =>
             {

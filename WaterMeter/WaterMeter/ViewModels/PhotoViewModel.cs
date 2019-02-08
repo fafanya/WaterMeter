@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using WaterMeter.Models;
 using Xamarin.Forms;
 using WaterMeter.Views;
 using Plugin.Media.Abstractions;
@@ -12,9 +12,9 @@ namespace WaterMeter.ViewModels
     {
         public PhotoViewModel()
         {
-            MessagingCenter.Subscribe<PhotoPage, MediaFile>(this, "AddPhoto", async (obj, photo) =>
+            MessagingCenter.Subscribe<PhotoPage, Counter>(this, "AddPhoto", async (obj, fileItem) =>
             {
-                await DataStore.AddPhotoAsync(photo);
+                await DataStore.AddPhotoAsync(fileItem);
             });
         }
     }

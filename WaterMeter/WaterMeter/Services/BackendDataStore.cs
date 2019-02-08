@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WaterMeter.Models;
 using Plugin.Media.Abstractions;
+using System.IO;
+
 
 namespace WaterMeter.Services
 {
-    public class AzureDataStore : IDataStore<Item>
+    public class BackendDataStore : IDataStore<Item>
     {
         HttpClient client;
         IEnumerable<Item> items;
 
-        public AzureDataStore()
+        public BackendDataStore()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri($"{App.AzureBackendUrl}/");
+            client.BaseAddress = new Uri($"{App.BackendUrl}/");
 
             items = new List<Item>();
         }
@@ -80,18 +82,15 @@ namespace WaterMeter.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> AddPhotoAsync(MediaFile photo)
+        public async Task<bool> AddPhotoAsync(Counter counter)
         {
-            if (photo == null)
-                return false;
+            MultipartFormDataContent content = new MultipartFormDataContent
+            {
+                { new StreamContent(counter.Photo.GetStream()), "\"file\"", $"\"{counter.Photo.Path}\"" },
+                { new StringContent(JsonConvert.SerializeObject(counter.Details), Encoding.UTF8, "application/json"), "item" }
+            };
 
-            var content = new MultipartFormDataContent();
-
-            content.Add(new StreamContent(photo.GetStream()),
-                "\"file\"",
-                $"\"{photo.Path}\"");
-
-            var response = await client.PostAsync($"api/item/Files/Upload/", content);
+            var response = await client.PostAsync($"api/item/CreateCounterMeasure/", content);
             return response.IsSuccessStatusCode;
         }
     }

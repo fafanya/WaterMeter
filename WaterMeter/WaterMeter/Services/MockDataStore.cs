@@ -68,5 +68,10 @@ namespace WaterMeter.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> AddPhotoAsync(Counter fileItem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

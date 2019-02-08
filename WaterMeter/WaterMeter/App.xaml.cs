@@ -9,10 +9,8 @@ namespace WaterMeter
 {
     public partial class App : Application
     {
-        //TODO: Replace with *.azurewebsites.net url after deploying backend to Azure
-        //public static string AzureBackendUrl = "http://192.168.100.4:5000";
-        //public static string AzureBackendUrl = "http://10.0.2.2:5000";
-        public static string AzureBackendUrl = "http://192.168.0.73:5000";
+        public static string BackendUrl = "http://192.168.100.4:5000";
+        //public static string BackendUrl = "http://192.168.0.73:5000";
         public static bool UseMockDataStore = false;
 
         public App()
@@ -22,7 +20,7 @@ namespace WaterMeter
             if (UseMockDataStore)
                 DependencyService.Register<MockDataStore>();
             else
-                DependencyService.Register<AzureDataStore>();
+                DependencyService.Register<BackendDataStore>();
 
             MainPage = new MainPage();
         }
