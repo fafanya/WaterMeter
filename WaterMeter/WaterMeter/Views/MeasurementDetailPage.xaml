@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WaterMeter.Views.PhotoPage">
+             x:Class="WaterMeter.Views.MeasurementDetailPage"
+             Title="{Binding Title}">
     <ContentPage.Content>
         <Grid Padding="10,20,10,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            <StackLayout Spacing="2">
+                <Label Text="Text" FontSize="Medium" />
+                <Label Text="{Binding Item.Text}" FontSize="Small" />
+                <Label Text="Description" FontSize="Medium" />
+                <Label Text="{Binding Item.Description}" FontSize="Small" />
+            </StackLayout>
             <Image
                   x:Name="image"
-                  Grid.Row="1"
-                  BackgroundColor="#F0F0F0"/>
-            <Button
-                  Text="Take Photo"
-                  BackgroundColor="Lime"
                   Grid.Row="2"
-                  Clicked="TakePhoto_Clicked"/>
+                  BackgroundColor="#F0F0F0"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

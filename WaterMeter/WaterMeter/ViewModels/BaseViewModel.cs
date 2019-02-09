@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 using Xamarin.Forms;
-
-using WaterMeter.Models;
+using WaterMeter.Common.Models;
 using WaterMeter.Services;
 
 namespace WaterMeter.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<TMeasurement> DataStore => DependencyService.Get<IDataStore<TMeasurement>>();
 
         bool isBusy = false;
         public bool IsBusy

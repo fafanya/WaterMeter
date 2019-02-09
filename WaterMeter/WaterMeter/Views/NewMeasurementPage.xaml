@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WaterMeter.Views.NewMeasurementPage"
+             Title="New measurement">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="cancel.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid Padding="10,20,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Spacing="2">
+                <Label Text="Text" FontSize="Medium" />
+                <Entry Text="{Binding Measurement.Details.Text}" FontSize="Small" />
+                <Label Text="Description" FontSize="Medium" />
+                <Editor Text="{Binding Measurement.Details.Description}" FontSize="Small" />
+            </StackLayout>
+            <Image
+                  x:Name="image"
+                  Grid.Row="2"
+                  BackgroundColor="#F0F0F0"/>
+            <Button
+                  Text="Take Photo"
+                  BackgroundColor="Lime"
+                  Grid.Row="3"
+                  Clicked="TakePhoto_Clicked"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -2,31 +2,38 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
-
+using WaterMeter.Common.Models;
 using WaterMeter.Models;
 using WaterMeter.Views;
 
 namespace WaterMeter.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class MeasurementListViewModel : BaseViewModel
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<TMeasurement> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command AddCommand { get; private set; }
+        public INavigation Navigation { get; private set; }
 
-        public ItemsViewModel()
+        public MeasurementListViewModel(INavigation navigation)
         {
+            Navigation = navigation;
             Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<TMeasurement>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            AddCommand = new Command(async () => await ExecuteAddCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewMeasurementPage, MeasurementLocal>(this, "NewMeasurement", async (obj, fileItem) =>
             {
-                var newItem = item as Item;
-                Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
+                await DataStore.AddPhotoAsync(fileItem);
+                await ExecuteLoadItemsCommand();
             });
+        }
+
+        async Task ExecuteAddCommand()
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewMeasurementPage()));
         }
 
         async Task ExecuteLoadItemsCommand()

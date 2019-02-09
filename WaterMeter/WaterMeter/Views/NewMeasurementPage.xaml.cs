@@ -1,30 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaterMeter.Models;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Media;
 using Plugin.Permissions;
-using Plugin;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions.Abstractions;
-using WaterMeter.ViewModels;
+using WaterMeter.Common.Models;
+using WaterMeter.Models;
 
 namespace WaterMeter.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PhotoPage : ContentPage
+	public partial class NewMeasurementPage : ContentPage
 	{
-        PhotoViewModel viewModel;
+        public MeasurementLocal Measurement { get; set; }
 
-        public PhotoPage ()
-		{
-			InitializeComponent ();
+        public NewMeasurementPage()
+        {
+            InitializeComponent();
 
-            BindingContext = viewModel = new PhotoViewModel();
+            Measurement = new MeasurementLocal { 
+                Details = new TMeasurement ()
+            };
+
+            BindingContext = this;
         }
 
         async void TakePhoto_Clicked(object sender, System.EventArgs e)
@@ -65,23 +65,35 @@ namespace WaterMeter.Views
                 Directory = "Sample",
                 Name = "test.jpg"
             });
-            if (file == null)
-                return;
-            await DisplayAlert("File Location", file.Path, "OK");
 
-            Counter fileItem = new Counter
-            {
-                Photo = file,
-                Details = new Item { Text = "Counter", Description = "Photo" }
-            };
-            MessagingCenter.Send(this, "AddPhoto", fileItem);
+            MemoryStream ms = new MemoryStream();
+            file.GetStream().CopyTo(ms);
+            Measurement.Photo = ms.ToArray();
+            Measurement.PhotoPath = file.Path;
+            Measurement.Details.PhotoClientPath = file.Path;
 
-            image.Source = ImageSource.FromStream(() =>
+            image.Source = ImageSource.FromStream(()=> 
             {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
+                return file.GetStream();
+            } );
+        }
+
+        async void Save_Clicked(object sender, EventArgs e)
+        {
+            if (Measurement.Photo != null)
+            {
+                MessagingCenter.Send(this, "NewMeasurement", Measurement);
+                await Navigation.PopModalAsync();
+            }
+            else
+            {
+                await DisplayAlert("New Measurement", "Photo can not be empty", "OK");
+            }
+        }
+
+        async void Cancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
         }
     }
 }

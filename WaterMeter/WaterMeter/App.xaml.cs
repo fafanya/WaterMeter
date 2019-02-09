@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using WaterMeter.Services;
 using WaterMeter.Views;
@@ -11,16 +10,12 @@ namespace WaterMeter
     {
         public static string BackendUrl = "http://192.168.100.4:5000";
         //public static string BackendUrl = "http://192.168.0.73:5000";
-        public static bool UseMockDataStore = false;
 
         public App()
         {
             InitializeComponent();
 
-            if (UseMockDataStore)
-                DependencyService.Register<MockDataStore>();
-            else
-                DependencyService.Register<BackendDataStore>();
+            DependencyService.Register<BackendDataStore>();
 
             MainPage = new MainPage();
         }

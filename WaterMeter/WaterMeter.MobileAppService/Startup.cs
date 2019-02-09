@@ -6,8 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
-
-using WaterMeter.Models;
+using WaterMeter.Repositories;
 
 namespace WaterMeter.MobileAppService
 {
@@ -30,6 +29,7 @@ namespace WaterMeter.MobileAppService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            ItemRepository.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddSingleton<IItemRepository, ItemRepository>();
 
             services.AddSwaggerGen(c =>

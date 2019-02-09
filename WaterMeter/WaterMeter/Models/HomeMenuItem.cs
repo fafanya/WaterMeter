@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WaterMeter.Models
+﻿namespace WaterMeter.Models
 {
     public enum MenuItemType
     {
-        Browse,
-        About,
-        Photo
+        MeasureList,
+        About
     }
     public class HomeMenuItem
     {
