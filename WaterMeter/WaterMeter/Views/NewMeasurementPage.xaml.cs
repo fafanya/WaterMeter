@@ -62,6 +62,7 @@ namespace WaterMeter.Views
             }
             var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
+                //OverlayViewProvider = func,
                 Directory = "Sample",
                 Name = "test.jpg"
             });
@@ -77,6 +78,24 @@ namespace WaterMeter.Views
                 return file.GetStream();
             } );
         }
+
+        Func<object> func = () =>
+        {
+            var layout = new RelativeLayout();
+            var image = new Image
+            {
+                Source = "counter"
+            };
+
+            double ImageHeight(RelativeLayout p) => image.Measure(layout.Width, layout.Height).Request.Height;
+            double ImageWidth(RelativeLayout p) => image.Measure(layout.Width, layout.Height).Request.Width;
+
+            layout.Children.Add(image,
+                        Constraint.RelativeToParent(parent => parent.Width / 2 - ImageWidth(parent) / 2),
+                        Constraint.RelativeToParent(parent => parent.Height / 2 - ImageHeight(parent) / 2)
+            );
+            return layout;
+        };
 
         async void Save_Clicked(object sender, EventArgs e)
         {

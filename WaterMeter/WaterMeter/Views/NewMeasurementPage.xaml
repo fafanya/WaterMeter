@@ -34,9 +34,8 @@
                 <Label Text="Description" FontSize="Medium" />
                 <Editor Text="{Binding Measurement.Details.Description}" FontSize="Small" />
             </StackLayout>
-            <Image
+            <Image Grid.Row="2"
                   x:Name="image"
-                  Grid.Row="2"
                   BackgroundColor="#F0F0F0"/>
             <Button
                   Text="Take Photo"
