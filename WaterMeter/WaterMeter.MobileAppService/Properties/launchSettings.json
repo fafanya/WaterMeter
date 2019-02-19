@@ -10,7 +10,6 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -24,6 +23,4 @@
       "applicationUrl": "http://192.168.100.4:5000/"
     }
   }
-}
-//192.168.0.73
-//192.168.100.4
+}//192.168.0.73
