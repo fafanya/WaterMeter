@@ -8,8 +8,8 @@ namespace WaterMeter
 {
     public partial class App : Application
     {
-        public static string BackendUrl = "http://192.168.100.4:5000";
-        //public static string BackendUrl = "http://192.168.0.73:5000";
+        //public static string BackendUrl = "http://192.168.100.4:5000";
+        public static string BackendUrl = "http://192.168.0.73:5000";
 
         public App()
         {
